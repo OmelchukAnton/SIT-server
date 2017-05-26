@@ -1,7 +1,12 @@
+const db = require('../db/users.js');
+
 function getUserById(id) {
-    return new Promise((resolve, reject) => {
-        mongoose.model('users').find({ _id: req.params._id}, function(err, _id) {
-            resolve(_id);
-        });
+    return db.getUserById(id).then(data => {
+        return data;
     });
 }
+
+
+module.exports = {
+    getUserById
+};

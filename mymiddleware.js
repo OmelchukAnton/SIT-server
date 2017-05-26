@@ -1,4 +1,4 @@
-const contactData = require('./contactsData.js');
+const contactData = require('./helpers/contactsData.js');
 
 // console.log(contactData);
 

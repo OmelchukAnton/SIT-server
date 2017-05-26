@@ -1,11 +1,17 @@
-//TODO: из этих методов должны возвращаться промисы
+const UserModel = require('../models/users');
 
-export default getAllUser() {
-    //TODO: тут ходим к схемам, например,
-    //mongoose.model('users').find({})
+exports.getAllContacts = () => {
+    return new Promise((resolve, reject) => {
+        UserModel.find(function(err, users) {
+            resolve(users);
+        });
+    });
 }
 
-export default getUserById(id) {
-    //TODO: тут ходим к схемам, например,
-    //mongoose.model('users').find({ id })
+exports.getUserById = (id) => {
+    return new Promise((resolve, reject) => {
+        UserModel.find({ '_id': '58f9c9301e2a0d8775a37df8' }, function(err, _id) {
+            resolve(_id);
+        });
+    });
 }
