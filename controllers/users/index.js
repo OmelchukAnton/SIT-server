@@ -5,7 +5,7 @@ const contactsService = require('../../services/allContacts.js');
 function getAllContacts(req, res) {
     return contactsService.getAllContacts().then(data => {
         return res.json({ ok: true, data});
-    })
+    });
 }
 
 function getUserById(req, res) {

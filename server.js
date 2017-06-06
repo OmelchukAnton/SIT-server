@@ -9,11 +9,11 @@ const app = express();
 //     }
 // })
 
-app.get('/about', (req, res, next) => {
+app.get('/about', (req, res) => {
     res.send('about');
 });
 
-app.get('/contact', (req, res, next) => {
+app.get('/contact', (req, res) => {
     res.send('CONTAACT');
 });
 
