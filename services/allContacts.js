@@ -4,6 +4,11 @@ function getAllContacts() {
     return db.getAllContacts();
 }
 
+function createUser(newUser) {
+    return db.createUser(newUser);
+}
+
 module.exports = {
-    getAllContacts
+    getAllContacts,
+    createUser
 };

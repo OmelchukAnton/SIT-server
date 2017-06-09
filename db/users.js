@@ -16,7 +16,28 @@ function getUserById() {
     });
 }
 
+function createUser(data) {
+    return new Promise((resolve, reject) => {
+        const user = new UserModel();
+        user.save(function(err, newUser) {
+            if (err) {
+                return console.log(err);
+            } else {
+                resolve(newUser);
+            }
+        });
+    });
+}
+// function createUser(data) {
+//     return new Promise((resolve, reject) => {
+//         UserModel.save(data, function(err, newUser) {
+//             resolve(newUser);
+//         });
+//     });
+// }
+
 module.exports = {
     getAllContacts,
-    getUserById
+    getUserById,
+    createUser
 };
