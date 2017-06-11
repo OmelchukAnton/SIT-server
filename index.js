@@ -2,7 +2,11 @@ const express = require('express'),
     app = express();
 const bodyParser = require("body-parser");
 const cors = require('cors');
+
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/users');
+// const connection = mongoose.connection;
 
 const homepage = require('./controllers/homepage');
 const usersController = require('./controllers/users');
@@ -12,8 +16,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
-
-mongoose.connect('mongodb://localhost/users');
+// mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://localhost/users');
 
 
 app.get('/', homepage.controller);
@@ -31,11 +35,6 @@ app.post('/re', (req, res) => {
 });
 
 app.post('/reg', usersController.createUser);
-// app.post('/reg', (req, res) => {
-//     const name = req.body.userData;
-//     console.log("name = " + name);
-//     res.json({ ok: true });
-// });
 
 
 app.listen(3000, function () {
