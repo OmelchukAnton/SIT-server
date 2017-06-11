@@ -17,8 +17,9 @@ function getUserById(req, res) {
 }
 
 function createUser(req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     const newUser = req.body;
+    // console.log(newUser);
 
     return contactsService.createUser(newUser).then(data => {
         return res.json({ ok: true, data });

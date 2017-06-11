@@ -5,6 +5,7 @@ function getAllContacts() {
 }
 
 function createUser(newUser) {
+    // console.log(newUser);
     return db.createUser(newUser);
 }
 
