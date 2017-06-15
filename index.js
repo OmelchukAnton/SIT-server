@@ -6,7 +6,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/users');
-// const connection = mongoose.connection;
 
 const homepage = require('./controllers/homepage');
 const usersController = require('./controllers/users');
@@ -15,9 +14,6 @@ const usersController = require('./controllers/users');
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
-
-// mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://localhost/users');
 
 
 app.get('/', homepage.controller);
@@ -35,6 +31,8 @@ app.post('/re', (req, res) => {
 });
 
 app.post('/reg', usersController.createUser);
+
+app.post('/auth', usersController.checkAccount);
 
 
 app.listen(3000, function () {

@@ -5,11 +5,15 @@ function getAllContacts() {
 }
 
 function createUser(newUser) {
-    // console.log(newUser);
     return db.createUser(newUser);
+}
+
+function checkAccount(verifyUser) {
+    return db.checkAccount(verifyUser);
 }
 
 module.exports = {
     getAllContacts,
-    createUser
+    createUser,
+    checkAccount
 };

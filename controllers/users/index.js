@@ -17,11 +17,17 @@ function getUserById(req, res) {
 }
 
 function createUser(req, res) {
-    // console.log(req.body);
     const newUser = req.body;
-    // console.log(newUser);
 
     return contactsService.createUser(newUser).then(data => {
+        return res.json({ ok: true, data });
+    });
+}
+
+function checkAccount(req, res) {
+    const verifyUser = req.body;
+
+    return contactsService.checkAccount(verifyUser).then(data => {
         return res.json({ ok: true, data });
     });
 }
@@ -29,5 +35,6 @@ function createUser(req, res) {
 module.exports = {
     getAllContacts,
     getUserById,
-    createUser
+    createUser,
+    checkAccount
 };

@@ -8,10 +8,14 @@ function getAllContacts() {
     });
 }
 
-function getUserById() {
-    return new Promise((resolve) => {
-        UserModel.find({ '_id': '58f9c9301e2a0d8775a37df8' }, function(err, _id) {
-            resolve(_id);
+function getUserById(data) {
+    return new Promise((resolve, reject) => {
+        UserModel.find({'_id': data}, function(err, data) {
+            if (err) {
+                return reject(err);
+            } else {
+                resolve(data);
+            }
         });
     });
 }
@@ -29,8 +33,22 @@ function createUser(data) {
     });
 }
 
+
+function checkAccount(verifyUser) {
+    return new Promise((resolve, reject) => {
+        UserModel.find(function(err, verifyUser) {
+            if (err) {
+                return reject('You entered a wrong email or password.');
+            } else {
+                resolve(verifyUser);
+            }
+        });
+    });
+}
+
 module.exports = {
     getAllContacts,
     getUserById,
-    createUser
+    createUser,
+    checkAccount
 };
