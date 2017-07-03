@@ -8,6 +8,10 @@ function createUser(newUser) {
     return db.createUser(newUser);
 }
 
+function addIdNewContact(addId) {
+    return db.addIdNewContact(addId);
+}
+
 function checkAccount(verifyUser) {
     return db.checkAccount(verifyUser);
 }
@@ -15,5 +19,6 @@ function checkAccount(verifyUser) {
 module.exports = {
     getAllContacts,
     createUser,
+    addIdNewContact,
     checkAccount
 };

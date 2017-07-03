@@ -20,10 +20,12 @@ function getUserById(data) {
     });
 }
 
+
 function createUser(data) {
     return new Promise((resolve, reject) => {
         const user = new UserModel(data);
-        user.save(function(err, newUser) {
+        const contacts = new Array({});
+        user.save(function(err, newUser, contacts) {
             if (err) {
                 return reject(err);
             } else {
@@ -33,10 +35,20 @@ function createUser(data) {
     });
 }
 
-
-function checkAccount(verifyUser) {
+function addIdNewContact(data) {
     return new Promise((resolve, reject) => {
-        UserModel.find(function(err, verifyUser) {
+        UserModel.update({"_id" : "594273ea30212e0e204c5209"},
+        {$push: {contacts: {"_id" : data }}}, function(err, id) {
+            resolve(id);
+        });
+    });
+}
+
+
+
+function checkAccount({ email, password }) {
+    return new Promise((resolve, reject) => {
+        UserModel.find({ email, password }, function(err, verifyUser) {
             if (err) {
                 return reject('You entered a wrong email or password.');
             } else {
@@ -49,6 +61,8 @@ function checkAccount(verifyUser) {
 module.exports = {
     getAllContacts,
     getUserById,
+    // getContactsUserById,
     createUser,
+    addIdNewContact,
     checkAccount
 };

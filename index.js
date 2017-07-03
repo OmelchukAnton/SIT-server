@@ -34,6 +34,8 @@ app.post('/reg', usersController.createUser);
 
 app.post('/auth', usersController.checkAccount);
 
+app.post('/addId', usersController.addIdNewContact);
+
 
 app.listen(3000, function () {
   console.log('START on PORT 3000!');

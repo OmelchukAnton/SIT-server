@@ -10,6 +10,7 @@ const usersSchema = new Schema({
     city: String,
     email: String,
     password: String,
+    contacts: Array,
     // author    : ObjectId,
     // title     : String,
     // body      : String,

@@ -16,11 +16,19 @@ function getUserById(req, res) {
     });
 }
 
+
 function createUser(req, res) {
     const newUser = req.body;
-
     return contactsService.createUser(newUser).then(data => {
         return res.json({ ok: true, data });
+    });
+}
+
+function addIdNewContact(req, res) {
+    // console.log(req.body.id);
+    const addId = req.body.id;
+    return contactsService.addIdNewContact(addId).then(id => {
+        return res.json({ ok: true, id });
     });
 }
 
@@ -36,5 +44,6 @@ module.exports = {
     getAllContacts,
     getUserById,
     createUser,
+    addIdNewContact,
     checkAccount
 };
