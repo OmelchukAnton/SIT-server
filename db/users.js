@@ -2,66 +2,65 @@ const UserModel = require('../models/users');
 
 function getAllContacts() {
     return new Promise((resolve) => {
-        UserModel.find(function(err, users) {
+        UserModel.find((err, users) => {
             resolve(users);
         });
     });
 }
 
+
 function getUserById(data) {
-    return new Promise((resolve, reject) => {
-        UserModel.find({'_id': data}, function(err, data) {
-            if (err) {
-                return reject(err);
-            } else {
-                resolve(data);
-            }
+    return new Promise((resolve) => {
+        UserModel.find({
+            '_id': data
+        }, (err, data) => {
+            resolve(data);
         });
     });
 }
 
 
 function createUser(data) {
-    return new Promise((resolve, reject) => {
-        const user = new UserModel(data);
-        const contacts = new Array({});
-        user.save(function(err, newUser, contacts) {
-            if (err) {
-                return reject(err);
-            } else {
-                resolve(newUser);
-            }
+    const user = new UserModel(data);
+    const contacts = new Array({});
+    return new Promise((resolve) => {
+        user.save((err, newUser) => {
+            resolve(newUser, contacts);
         });
     });
 }
 
+
+function checkAccount({ email, password }) {
+    return new Promise((resolve) => {
+        UserModel.find({
+            email, password
+        }, (err, verifyUser) => {
+            resolve(verifyUser);
+        });
+    });
+}
+
+
 function addIdNewContact(data) {
-    return new Promise((resolve, reject) => {
-        UserModel.update({"_id" : "594273ea30212e0e204c5209"},
-        {$push: {contacts: {"_id" : data }}}, function(err, id) {
+    // console.log(verifyUser);
+    return new Promise((resolve) => {
+        UserModel.update({
+            "_id" : "594273ea30212e0e204c5209"
+        }, {
+            $push: {
+                contacts: data,
+            }
+        }, (err, id) => {
             resolve(id);
         });
     });
 }
 
 
-
-function checkAccount({ email, password }) {
-    return new Promise((resolve, reject) => {
-        UserModel.find({ email, password }, function(err, verifyUser) {
-            if (err) {
-                return reject('You entered a wrong email or password.');
-            } else {
-                resolve(verifyUser);
-            }
-        });
-    });
-}
-
 module.exports = {
     getAllContacts,
     getUserById,
-    // getContactsUserById,
     createUser,
     addIdNewContact,
     checkAccount

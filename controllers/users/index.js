@@ -25,10 +25,9 @@ function createUser(req, res) {
 }
 
 function addIdNewContact(req, res) {
-    // console.log(req.body.id);
-    const addId = req.body.id;
-    return contactsService.addIdNewContact(addId).then(id => {
-        return res.json({ ok: true, id });
+    const addId = req.body.contact;
+    return contactsService.addIdNewContact(addId).then(contact => {
+        return res.json({ ok: true, contact });
     });
 }
 

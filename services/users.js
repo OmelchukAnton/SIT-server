@@ -6,7 +6,6 @@ function getUserById(id) {
     });
 }
 
-
 module.exports = {
     getUserById
 };

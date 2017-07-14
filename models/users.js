@@ -11,10 +11,6 @@ const usersSchema = new Schema({
     email: String,
     password: String,
     contacts: Array,
-    // author    : ObjectId,
-    // title     : String,
-    // body      : String,
-    // date      : Date
 });
 
 module.exports = mongoose.model('users', usersSchema);
