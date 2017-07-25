@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 app.get('/', homepage.controller);
 app.get('/users', usersController.getAllContacts);
+app.get('/find/:id', usersController.getFilterContacts);
 app.get('/users/:id', usersController.getUserById);
 
 app.post('/reg', usersController.createUser);
