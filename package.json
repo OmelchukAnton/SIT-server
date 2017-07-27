@@ -19,6 +19,7 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "eslint": "^3.19.0",
     "eslint-plugin-node": "^4.2.2",
     "mongoose": "^4.9.5"

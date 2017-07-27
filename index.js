@@ -7,14 +7,12 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/users');
 
-const homepage = require('./controllers/homepage');
 const usersController = require('./controllers/users');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
-app.get('/', homepage.controller);
 app.get('/users', usersController.getAllContacts);
 app.get('/find/:id', usersController.getFilterContacts);
 app.get('/users/:id', usersController.getUserById);

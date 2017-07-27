@@ -5,6 +5,7 @@ function getAllContacts() {
 }
 
 function getFilterContacts() {
+    // TODO: move here logic from controller
     return db.getFilterContacts();
 }
 
@@ -18,8 +19,9 @@ function createUser(newUser) {
     return db.createUser(newUser);
 }
 
-function addIdNewContact(addId) {
-    return db.addIdNewContact(addId);
+function addIdNewContact(ids) {
+    return db.addIdNewContact(ids);
+    // TODO: для сообщений: go to messages db and create new chat, then db.addIdNewContact(addId)
 }
 
 function checkAccount(verifyUser) {
@@ -32,6 +34,6 @@ module.exports = {
     getFilterContacts,
     getUserById,
     createUser,
-    addIdNewContact,
-    checkAccount
+    checkAccount,
+    addIdNewContact
 };

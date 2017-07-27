@@ -43,15 +43,16 @@ function createUser(req, res) {
 }
 
 function addIdNewContact(req, res) {
-    const addId = req.body.contact._id;
-    // {
-    //     mainUserId: 'в локал сторедже',
-    //     newContact: {
-    //         id: 'id выбранного пользователя'
-    //     }
-    // }
-    return contactsService.addIdNewContact(addId).then(contact => {
-        return res.json({ ok: true, contact });
+
+    const ids = {
+        mainUserId: req.body.data.mainId,
+        newUserId: {
+            id: req.body.data.newContactId,
+        }
+    }
+
+    return contactsService.addIdNewContact(ids).then(data => {
+        return res.json({ ok: true, data });
     });
 }
 
