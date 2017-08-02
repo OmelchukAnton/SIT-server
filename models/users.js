@@ -3,8 +3,6 @@ const Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
 const usersSchema = new Schema({
-    name: String,
-
     firstname: String,
     lastname: String,
     city: String,

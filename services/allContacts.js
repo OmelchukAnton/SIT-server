@@ -1,12 +1,8 @@
 const db = require('../db/users.js');
+const dbChat = require('../db/chat.js');
 
 function getAllContacts() {
     return db.getAllContacts();
-}
-
-function getFilterContacts() {
-    // TODO: move here logic from controller
-    return db.getFilterContacts();
 }
 
 function getUserById(id) {
@@ -15,13 +11,43 @@ function getUserById(id) {
     });
 }
 
+function getFilterContacts(data) {
+    const id = data;
+    const getAllContactsPromise = getAllContacts();
+    const getOwnContactsPromise = getUserById(id);
+
+    return Promise.all([getAllContactsPromise, getOwnContactsPromise]).then(([allContactsResponse, userResponse]) => {
+        const currentContacts = userResponse[0].contacts;
+        const responseData = allContactsResponse.filter(contact => {
+            const { _id } = contact;
+
+            return `${_id}` !== `${id}` && !currentContacts.some(userContact => `${userContact._id}` === `${_id}`);
+        });
+        return responseData;
+    });
+}
+
 function createUser(newUser) {
     return db.createUser(newUser);
 }
 
-function addIdNewContact(ids) {
-    return db.addIdNewContact(ids);
-    // TODO: для сообщений: go to messages db and create new chat, then db.addIdNewContact(addId)
+function createChat(newChat) {
+    console.log(newChat)
+    return dbChat.createChat(newChat);
+}
+
+function addIdNewContact(data) {
+    const mainContactId = data.mainUserId;
+    const newContactId = data.newUserId;
+    return db.getUserById(newContactId).then(contact => {
+        const newUser = {
+            _id: contact[0]._id,
+            firstname: contact[0].firstname,
+            lastname: contact[0].lastname,
+        };
+    return db.addIdNewContact(mainContactId, newUser);
+    // return dbChat.createChat(newChat).then(db.addIdNewContact(mainContactId, newUser));
+    });
 }
 
 function checkAccount(verifyUser) {

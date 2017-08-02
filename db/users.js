@@ -42,13 +42,16 @@ function checkAccount({ email, password }) {
 }
 
 
-function addIdNewContact(ids) {
+function addIdNewContact(mainContactId, newUser) {
     return new Promise((resolve) => {
         UserModel.update({
-            "_id" : ids.mainUserId,
+            "_id" : mainContactId,
         }, {
             $push: {
-                contacts: ids.newUserId, // push updated data with chatId
+                // contacts: {
+                //     ...newUser,
+                // }
+                contacts: newUser, // push updated data with chatId
             }
         }, (err, id) => {
             resolve(id);

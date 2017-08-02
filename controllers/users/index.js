@@ -9,20 +9,8 @@ function getAllContacts(req, res) {
 
 function getFilterContacts(req, res) {
     const id = req.params.id;
-
-    const getAllContactsPromise = contactsService.getAllContacts();
-    const getOwnContactsPromise = contactsService.getUserById(id);
-
-    return Promise.all([getAllContactsPromise, getOwnContactsPromise]).then(([allContactsResponse, userResponse]) => {
-        const currentContacts = userResponse[0].contacts;
-        const responseData = allContactsResponse.filter(contact => {
-            const { _id } = contact;
-            //const id = _id && _id.toString();
-
-            return `${_id}` !== `${id}` && !currentContacts.some(userContact => `${userContact._id}` === `${_id}`);
-        });
-
-         return res.json({ok: true, data: responseData });
+    return contactsService.getFilterContacts(id).then(data => {
+        return res.json({ ok: true, data});
     });
 }
 
@@ -46,16 +34,13 @@ function addIdNewContact(req, res) {
 
     const ids = {
         mainUserId: req.body.data.mainId,
-        newUserId: {
-            id: req.body.data.newContactId,
-        }
-    }
+        newUserId: req.body.data.newContactId,
+    };
 
     return contactsService.addIdNewContact(ids).then(data => {
         return res.json({ ok: true, data });
     });
 }
-
 
 function checkAccount(req, res) {
     const verifyUser = req.body;
