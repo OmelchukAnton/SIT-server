@@ -22,10 +22,9 @@ function getUserById(data) {
 
 function createUser(data) {
     const user = new UserModel(data);
-    const contacts = new Array({});
     return new Promise((resolve) => {
         user.save((err, newUser) => {
-            resolve(newUser, contacts);
+            resolve(newUser);
         });
     });
 }
@@ -42,7 +41,7 @@ function checkAccount({ email, password }) {
 }
 
 
-function addIdNewContact(mainContactId, newUser) {
+function addIdNewContact(mainContactId, newUser, newChat) {
     return new Promise((resolve) => {
         UserModel.update({
             "_id" : mainContactId,
@@ -52,6 +51,7 @@ function addIdNewContact(mainContactId, newUser) {
                 //     ...newUser,
                 // }
                 contacts: newUser, // push updated data with chatId
+                chatsId: newChat,
             }
         }, (err, id) => {
             resolve(id);

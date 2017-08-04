@@ -32,7 +32,6 @@ function createUser(newUser) {
 }
 
 function createChat(newChat) {
-    console.log(newChat)
     return dbChat.createChat(newChat);
 }
 
@@ -45,8 +44,13 @@ function addIdNewContact(data) {
             firstname: contact[0].firstname,
             lastname: contact[0].lastname,
         };
-    return db.addIdNewContact(mainContactId, newUser);
-    // return dbChat.createChat(newChat).then(db.addIdNewContact(mainContactId, newUser));
+        return dbChat.createChat().then(chat => {
+            // console.log(chat)
+            const newChat = {
+                _id: chat._id,
+            }
+            return db.addIdNewContact(mainContactId, newUser, newChat);
+        });
     });
 }
 
