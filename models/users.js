@@ -9,7 +9,7 @@ const usersSchema = new Schema({
     email: String,
     password: String,
     contacts: Array,
-    chatsId: Array,
+    // chatsId: Array,
 });
 
 module.exports = mongoose.model('users', usersSchema);

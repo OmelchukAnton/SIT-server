@@ -38,18 +38,25 @@ function createChat(newChat) {
 function addIdNewContact(data) {
     const mainContactId = data.mainUserId;
     const newContactId = data.newUserId;
-    return db.getUserById(newContactId).then(contact => {
-        const newUser = {
-            _id: contact[0]._id,
-            firstname: contact[0].firstname,
-            lastname: contact[0].lastname,
-        };
+
+    const getMainContact = db.getUserById(mainContactId);
+    const getNewContact = db.getUserById(newContactId);
+
+    return Promise.all([getMainContact, getNewContact]).then(([mainContact, newContact])  => {
         return dbChat.createChat().then(chat => {
-            // console.log(chat)
-            const newChat = {
-                _id: chat._id,
-            }
-            return db.addIdNewContact(mainContactId, newUser, newChat);
+            const mainUser = {
+                chatId: chat._id,
+                _id: mainContact[0]._id,
+                firstname: mainContact[0].firstname,
+                lastname: mainContact[0].lastname,
+            };
+            const newUser = {
+                chatId: chat._id,
+                _id: newContact[0]._id,
+                firstname: newContact[0].firstname,
+                lastname: newContact[0].lastname,
+            };
+            return Promise.all([db.addIdNewContact(mainContactId, newUser), db.addIdNewContact(newContactId, mainUser)]);
         });
     });
 }
@@ -58,11 +65,11 @@ function checkAccount(verifyUser) {
     return db.checkAccount(verifyUser);
 }
 
-
 module.exports = {
     getAllContacts,
     getFilterContacts,
     getUserById,
+    createChat,
     createUser,
     checkAccount,
     addIdNewContact
