@@ -1,4 +1,4 @@
-const ConversationModel = require('../models/conversation');
+const ConversationModel = require('../models/conversations');
 // const Message = require('../models/message');
 
 function createChat(newChat) {
@@ -6,6 +6,14 @@ function createChat(newChat) {
     return new Promise((resolve) => {
         chat.save((err, newChat) => {
             resolve(newChat);
+        });
+    });
+}
+
+function getAllMessages() {
+    return new Promise((resolve) => {
+        ConversationModel.find((err, conversations) => {
+            resolve(conversations);
         });
     });
 }
@@ -45,5 +53,6 @@ function createChat(newChat) {
 
 
 module.exports = {
-    createChat
+    createChat,
+    getAllMessages,
 };

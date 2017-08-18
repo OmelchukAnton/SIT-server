@@ -7,6 +7,12 @@ function createChat(req, res) {
     });
 }
 
+function getAllMessages(req, res) {
+    return messagesService.getAllMessages().then(data => {
+        return res.json({ ok: true, data });
+    });
+}
+
 // function getConversations(req, res) {
 //     return messagesService.getConversations().then(data => {
 //         return res.json({ ok: true, data});
@@ -15,5 +21,5 @@ function createChat(req, res) {
 
 module.exports = {
     createChat,
-    // getConversations
+    getAllMessages,
 };

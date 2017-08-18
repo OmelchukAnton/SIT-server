@@ -5,7 +5,9 @@ const cors = require('cors');
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/users');
+mongoose.connect('mongodb://localhost/users'),
+                ('mongodb://localhost/conversations');
+// mongoose.connect('mongodb://localhost/conversations');
 
 const usersController = require('./controllers/users');
 const conversationsController = require('./controllers/messages');
@@ -22,6 +24,7 @@ app.post('/reg', usersController.createUser);
 app.post('/auth', usersController.checkAccount);
 app.post('/addId', usersController.addIdNewContact);
 
+app.get('/messages', conversationsController.getAllMessages);
 app.post('/createChat', conversationsController.createChat);
 
 app.listen(3000, function () {
