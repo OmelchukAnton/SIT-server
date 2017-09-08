@@ -1,8 +1,8 @@
 const messagesService = require('../../services/mess.js');
 
-function createChat(req, res) {
-    const newChat = req.body;
-    return messagesService.createChat(newChat).then(data => {
+function addNewMessage(req, res) {
+    const newMessage = req.body;
+    return messagesService.addNewMessage(newMessage).then(data => {
         return res.json({ ok: true, data });
     });
 }
@@ -13,13 +13,8 @@ function getAllMessages(req, res) {
     });
 }
 
-// function getConversations(req, res) {
-//     return messagesService.getConversations().then(data => {
-//         return res.json({ ok: true, data});
-//     });
-// }
 
 module.exports = {
-    createChat,
+    addNewMessage,
     getAllMessages,
 };

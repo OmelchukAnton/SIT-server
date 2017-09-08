@@ -1,19 +1,16 @@
 const db = require('../db/chat.js');
 
-function createChat(newChat) {
-    return db.createChat(newChat);
+
+function addNewMessage(newMessage) {
+    return db.addNewMessage(newMessage);
 }
 
 function getAllMessages() {
     return db.getAllMessages();
 }
 
-// function getConversations() {
-//     return db.getConversations();
-// }
 
 module.exports = {
-    createChat,
+    addNewMessage,
     getAllMessages,
-    // getConversations
 };

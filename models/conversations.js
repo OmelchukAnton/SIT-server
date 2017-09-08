@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const ConversationSchema = new Schema({
     messages: [{
+        whoSend: Schema.Types.String,
         text: Schema.Types.String,
-        sendDate: Schema.Types.Date,
+        sendTime: Schema.Types.String,
         isRead: Schema.Types.Boolean,
     }],
 });
