@@ -7,8 +7,9 @@ function addNewMessage(req, res) {
     });
 }
 
-function getAllMessages(req, res) {
-    return messagesService.getAllMessages().then(data => {
+function getMessagesByChatId(req, res) {
+    const chatId = req.params.chatId;
+    return messagesService.getMessagesByChatId(chatId).then(data => {
         return res.json({ ok: true, data });
     });
 }
@@ -16,5 +17,5 @@ function getAllMessages(req, res) {
 
 module.exports = {
     addNewMessage,
-    getAllMessages,
+    getMessagesByChatId,
 };

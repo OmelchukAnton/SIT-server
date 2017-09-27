@@ -12,6 +12,8 @@ function createChat(newChat) {
 function addNewMessage(newMessage) {
     return new Promise((resolve) => {
         ConversationModel.update({
+                "_id" : newMessage.chatId,
+            }, {
             $push: {
                 messages: {
                     whoSend: newMessage.whoSend,
@@ -26,10 +28,12 @@ function addNewMessage(newMessage) {
 }
 
 
-function getAllMessages() {
+function getMessagesByChatId(data) {
     return new Promise((resolve) => {
-        ConversationModel.find((err, conversations) => {
-            resolve(conversations);
+        ConversationModel.find({
+            '_id': data
+        }, (err, data) => {
+            resolve(data);
         });
     });
 }
@@ -38,5 +42,5 @@ function getAllMessages() {
 module.exports = {
     createChat,
     addNewMessage,
-    getAllMessages,
+    getMessagesByChatId,
 };

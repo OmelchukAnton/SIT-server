@@ -5,12 +5,12 @@ function addNewMessage(newMessage) {
     return db.addNewMessage(newMessage);
 }
 
-function getAllMessages() {
-    return db.getAllMessages();
+function getMessagesByChatId(chatId) {
+    return db.getMessagesByChatId(chatId);
 }
 
 
 module.exports = {
     addNewMessage,
-    getAllMessages,
+    getMessagesByChatId,
 };

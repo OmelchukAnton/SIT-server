@@ -12,7 +12,7 @@ const usersController = require('./controllers/users');
 const conversationsController = require('./controllers/messages');
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
 app.get('/users', usersController.getAllContacts);
@@ -23,7 +23,7 @@ app.post('/reg', usersController.createUser);
 app.post('/auth', usersController.checkAccount);
 app.post('/addId', usersController.addIdNewContact);
 
-app.get('/messages', conversationsController.getAllMessages);
+app.get('/messages/:chatId', conversationsController.getMessagesByChatId);
 
 app.post('/newMessage', conversationsController.addNewMessage);
 
