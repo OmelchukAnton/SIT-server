@@ -5,8 +5,11 @@ function addNewMessage(newMessage) {
     return db.addNewMessage(newMessage);
 }
 
-function getMessagesByChatId(chatId) {
-    return db.getMessagesByChatId(chatId);
+function getMessagesByChatId(datas) {
+    const chatId = datas.chatId;
+    const shouldLoadOnlyNew = datas.shouldLoadOnlyNew;
+
+    return db.getMessagesByChatId(chatId, shouldLoadOnlyNew);
 }
 
 

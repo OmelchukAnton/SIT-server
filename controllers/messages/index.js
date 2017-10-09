@@ -9,7 +9,14 @@ function addNewMessage(req, res) {
 
 function getMessagesByChatId(req, res) {
     const chatId = req.params.chatId;
-    return messagesService.getMessagesByChatId(chatId).then(data => {
+    const shouldLoadOnlyNew = req.query.timestamp;
+
+    const datas = {
+        chatId: req.params.chatId,
+        shouldLoadOnlyNew: req.query.timestamp,
+    };
+
+    return messagesService.getMessagesByChatId(datas).then(data => {
         return res.json({ ok: true, data });
     });
 }

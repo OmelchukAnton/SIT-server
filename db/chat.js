@@ -28,13 +28,22 @@ function addNewMessage(newMessage) {
 }
 
 
-function getMessagesByChatId(data) {
+function getMessagesByChatId(chatId, shouldLoadOnlyNew) {
     return new Promise((resolve) => {
-        ConversationModel.find({
-            '_id': data
-        }, (err, data) => {
-            resolve(data);
-        });
+        { shouldLoadOnlyNew === undefined ? (ConversationModel.find({
+
+            '_id': chatId,
+
+        }, (err, chatId) => {
+            resolve(chatId)
+        })) : (ConversationModel.find({
+
+                '_id': chatId,
+                'sendTime': [{ $gte: shouldLoadOnlyNew }]
+            }, (err, chatId) => {
+                resolve(chatId);
+            }));
+        }
     });
 }
 
