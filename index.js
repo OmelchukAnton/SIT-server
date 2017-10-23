@@ -5,13 +5,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./config/sitdb');
 const mongoose = require('mongoose');
-<<<<<<< HEAD
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
-// mongoose.connect(db.uri);
-=======
 
->>>>>>> 27bade9184cb67bdd627262d6087bacc8feb6d5a
+//mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
+mongoose.connect(db.uri);
 
 const usersController = require('./controllers/users');
 const conversationsController = require('./controllers/messages');
