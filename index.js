@@ -3,8 +3,11 @@ const app = express();
 const multer = require('multer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const db = require('./config/sitdb');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/users');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
+// mongoose.connect(db.uri);
 
 const usersController = require('./controllers/users');
 const conversationsController = require('./controllers/messages');
@@ -46,6 +49,6 @@ app.get('/messages/:chatId', conversationsController.getMessagesByChatId);
 
 app.post('/newMessage', conversationsController.addNewMessage);
 
-app.listen(3000, () => {
-  console.log('start on PORT 3000!');
+app.listen(5000, () => {
+  console.log('start on PORT 5000!');
 });
