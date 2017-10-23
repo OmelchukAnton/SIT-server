@@ -50,6 +50,6 @@ app.get('/messages/:chatId', conversationsController.getMessagesByChatId);
 
 app.post('/newMessage', conversationsController.addNewMessage);
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log('start on PORT 5000!');
 });
