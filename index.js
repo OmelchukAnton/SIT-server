@@ -3,9 +3,14 @@ const app = express();
 const multer = require('multer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const db = require('./config/sitdb');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
+<<<<<<< HEAD
+=======
+// mongoose.connect(db.uri);
+>>>>>>> 601e46c523582aef450986c2ad6a9991498d4663
 
 const usersController = require('./controllers/users');
 const conversationsController = require('./controllers/messages');

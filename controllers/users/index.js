@@ -29,8 +29,8 @@ function createUser(req, res) {
 
 function addIdNewContact(req, res) {
   const ids = {
-    mainUserId: req.body.data.mainId,
-    newUserId: req.body.data.newContactId,
+    mainUserId: req.body.mainId,
+    newUserId: req.body.newContactId,
   };
   return contactsService.addIdNewContact(ids).then(data => {
     return res.json({ ok: true, data });
