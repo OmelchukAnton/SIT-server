@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./config/sitdb');
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 
 //mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
 mongoose.connect(db.uri);

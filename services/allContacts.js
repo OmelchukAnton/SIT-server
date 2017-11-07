@@ -66,7 +66,7 @@ function addIdNewContact(data) {
 }
 
 function checkAccount(verifyUser) {
-  return db.checkAccount(verifyUser);
+  return db.checkAccount(verifyUser).then(data => data);
 }
 
 
