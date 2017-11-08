@@ -5,21 +5,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./config/sitdb');
 const mongoose = require('mongoose');
-<<<<<<< HEAD
-mongoose.Promise = global.Promise;
-<<<<<<< HEAD
-mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
-<<<<<<< HEAD
-=======
-// mongoose.connect(db.uri);
->>>>>>> 601e46c523582aef450986c2ad6a9991498d4663
-=======
-=======
->>>>>>> 020d747534c475786bc15963df54a22309ba1b93
 
 //mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
 mongoose.connect(db.uri);
->>>>>>> 2d1595b567437ca4465bc175b69814539ea7e22a
 
 const usersController = require('./controllers/users');
 const conversationsController = require('./controllers/messages');
@@ -61,10 +49,6 @@ app.get('/messages/:chatId', conversationsController.getMessagesByChatId);
 
 app.post('/newMessage', conversationsController.addNewMessage);
 
-<<<<<<< HEAD
-app.listen(5000, () => {
-=======
 app.listen(process.env.PORT || 5000, () => {
->>>>>>> 2d1595b567437ca4465bc175b69814539ea7e22a
   console.log('start on PORT 5000!');
 });
