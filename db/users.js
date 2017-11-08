@@ -45,22 +45,8 @@ function addIdNewContact(mainContactId, newUser) {
       $push: {
         contacts: newUser,
       }
-    }, (err, newContact) => {
-      resolve(newContact);
-    });
-  });
-}
-
-function addIdNewContact(newContactId, mainUser) {
-  return new Promise((resolve) => {
-    UserModel.update({
-      '_id' : newContactId,
-    }, {
-      $push: {
-        contacts: mainUser,
-      }
-    }, (err, addContact) => {
-      resolve(addContact);
+    }, (err) => {
+      resolve(newUser);
     });
   });
 }

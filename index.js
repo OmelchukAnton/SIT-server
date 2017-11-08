@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./config/sitdb');
 const mongoose = require('mongoose');
+<<<<<<< HEAD
 mongoose.Promise = global.Promise;
 <<<<<<< HEAD
 mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
@@ -13,6 +14,8 @@ mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
 // mongoose.connect(db.uri);
 >>>>>>> 601e46c523582aef450986c2ad6a9991498d4663
 =======
+=======
+>>>>>>> 020d747534c475786bc15963df54a22309ba1b93
 
 //mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
 mongoose.connect(db.uri);
